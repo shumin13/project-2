@@ -1,13 +1,3 @@
-<div class="navbar-fixed">
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a href="/" class="brand-logo"><img src="http://i.imgur.com/BNqsg9z.png" height="56" width="56"></a>
-
-    </div>
-  </nav>
-</div>
-
-{{#if user}}
-<h4>Sign in as {{ user.name }}</h4>
-<a href="/users/logout">logout</a>
+{{#if currentUser}}
+<h4>Hello, {{ currentUser.name }}.</h4>
 {{/if}}

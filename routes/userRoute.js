@@ -4,11 +4,15 @@ const usersController = require('../controllers/users_controller')
 const passport = require('../config/ppConfig')
 
 router.get('/register', function(req, res) {
-  res.render('users/register')
+  res.render('users/register', {
+    message: req.flash('error')
+  })
 })
 
 router.get('/login', function(req, res) {
-  res.render('users/login')
+  res.render('users/login', {
+    message: req.flash('error')
+  })
 })
 
 router.get('/profile', function(req, res) {
@@ -19,7 +23,7 @@ router.get('/profile', function(req, res) {
 
 router.get('/logout', function(req, res) {
   req.logout()
-  console.log('logged out')
+  // console.log('logged out')
   res.redirect('/')
 })
 
@@ -33,6 +37,6 @@ router.post('/login',
     failureRedirect: '/users/login',
     failureFlash: true
   })
-) 
+)
 
 module.exports = router

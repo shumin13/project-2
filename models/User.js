@@ -52,7 +52,7 @@ userSchema.methods.validPassword = function (password) {
 }
 
 userSchema.plugin(uniqueValidator, {
-  message: 'Email already exists.'
+  message: 'Email already exists'
 })
 
 const User = mongoose.model('User', userSchema)

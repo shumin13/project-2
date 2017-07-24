@@ -16,9 +16,24 @@
 
 <body>
 
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="/" class="brand-logo"><img src="http://i.imgur.com/BNqsg9z.png" height="56" width="56"></a>
+        <ul class="right">
+          {{#if currentUser}}
+          <li><a href="/users/profile">Profile</a></li>
+          <li><a href="/users/logout">Logout</a></li>
+          {{else}}
+          <li><a href="/users/register">Sign Up</a></li>
+          <li><a href="/users/login">Login</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+  </div>
+
   {{{body}}}
-
-
 
   <footer class="page-footer blue-grey darken-4">
     <div class="container">
