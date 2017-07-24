@@ -45,6 +45,6 @@ const eaterySchema = new Schema({
   }]
 })
 
-const Eatery = mongoose.model('Eatery', userSchema)
+const Eatery = mongoose.model('Eatery', eaterySchema)
 
 module.exports = Eatery
