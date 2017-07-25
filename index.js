@@ -62,8 +62,6 @@ app.get('/', function (req, res) {
 app.use('/users', usersRoute)
 app.use('/eateries', eateriesRoute)
 
-
-
 // app.locals = {
 //   GOOGLE_PLACE_KEY: process.env.GOOGLE_PLACE_KEY,
 // }

@@ -8,6 +8,6 @@ router.get('/register', function (req, res) {
 
 router.post('/register', eateriesController.create)
 
-// router.get('/:id', usersController.show)
+router.get('/:id', eateriesController.show)
 
 module.exports = router

@@ -2,36 +2,36 @@ const Eatery = require('../models/Eatery')
 
 function create (req, res, next) {
   var newEatery = new Eatery ({
-    name: req.body.eatery.name,
-    address: req.body.eatery.address,
-    area: req.body.eatery.area,
-    openingHours: req.body.eatery.openingHours,
-    status: req.body.eatery.status,
-    type: req.body.eatery.type,
-    cuisine: req.body.eatery.cuisine,
-    specialities: req.body.eatery.specialities,
-    facilities: req.body.eatery.facilities,
-    tel: req.body.eatery.tel,
-    website: req.body.eatery.website,
-    reservation: req.body.eatery.reservation,
-    promotion: req.body.eatery.promotion
+    name: req.body.name,
+    address: req.body.address,
+    area: req.body.area,
+    status: req.body.status,
+    cuisine: req.body.cuisine,
+    website: req.body.website,
+    image: req.body.image
   })
 
   newEatery.save(function(err, createdEatery){
     if (err) {
-    //  next (err)
-    // return res.send(err)
-    // req.flash('errors', err.message)
-    return res.redirect('/register')
+    return res.redirect('/eateries/register')
     }
-    res.redirect('/')
-    // res.send({
-    //   status: 'ok',
-    //   message: 'New user created!'
-    // })
+    res.redirect('/eateries/register')
   })
 }
 
+function show(req, res) {
+    Eatery.findById(req.params.id, function(err, eatery) {
+      if (err) {
+        console.log(err)
+        return
+      }
+      res.render('eateries/show', {
+        eatery: eatery
+      })
+    })
+  }
+
 module.exports = {
-  create
+  create,
+  show
 }

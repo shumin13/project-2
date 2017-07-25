@@ -1,126 +1,78 @@
-<div class="navbar-fixed">
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a href="/" class="brand-logo"><img src="http://i.imgur.com/BNqsg9z.png" height="56" width="56"></a>
-
-    </div>
-  </nav>
-</div>
-
-
 <div class="container center-align">
   <div class="section">
     <h4 class="pink-text darken-5">Create New Eatery</h4>
-    
-<div class="row">
-  <div class="col s3">
-  </div>
 
-      <form class="col s12 m6" id="newUserForm" action="/eateries/register" method="post">
+    <div class="row">
+      <div class="col s3">
+      </div>
+
+      {{!-- <form class="col s12 m6" enctype="multipart/form-data" action="/eateries/register" method="post"> --}}
+
+      <form class="col s12 m6" action="/eateries/register" method="post">
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="name" type="text" name="eatery[name]" class="validate" required>
+            <input id="name" type="text" name="name" class="validate" required>
             <label for="name">Name</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="address" type="text" name="eatery[email]" class="validate" required>
+            <input id="address" type="text" name="address" class="validate" required>
             <label for="address">Address</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="area" type="text" name="eatery[area]" class="validate" required>
+            <input id="area" type="text" name="area" class="validate" required>
             <label for="area">Area</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="openingHours" type="text" name="eatery[openingHours]" class="validate" required>
-            <label for="openingHours">Opening Hours</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <select>
+            <select name="status">
             <option value="" disabled selected>Select One</option>
             <option value="Halal Certified">Halal Certified</option>
             <option value="Muslim Owned">Muslim Owned</option>
           </select>
-          <label for="status">Status</label>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="type" type="text" name="eatery[type]" class="validate" required>
-            <label for="type">Type</label>
+            <label for="status">Status</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="cuisine" type="text" name="eatery[cuisine]" class="validate" required>
+            <input id="cuisine" type="text" name="cuisine" class="validate" required>
             <label for="cuisine">Cuisine</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="specialities" type="text" name="eatery[specialities]" class="validate" required>
-            <label for="specialities">Specialities</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="facilities" type="text" name="eatery[facilities]" class="validate" required>
-            <label for="facilities">Facilities</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="tel" type="text" name="eatery[tel]" class="validate" required>
-            <label for="tel">Tel</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="website" type="text" name="eatery[website]" class="validate" required>
+            <input id="website" type="text" name="website" class="validate" required>
             <label for="website">Website</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="reservation" type="text" name="eatery[reservation]" class="validate" required>
-            <label for="reservation">Reservation</label>
+            <input id="image" type="text" name="image" class="validate" required>
+            <label for="image">Image</label>
           </div>
         </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="promotion" type="text" name="eatery[promotion]" class="validate" required>
-            <label for="promotion">Promotion</label>
+        {{!-- <div class="file-field input-field">
+          <div class="btn blue darken-4">
+            <span>Add Image</span>
+            <input type="file" name="image">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
           </div>
         </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="images" type="text" name="eatery[images]" class="validate" required>
-            <label for="images">Images</label>
-          </div>
-        </div>
-
+        <br> --}}
         <button class="btn waves-effect waves-light center pink darken-4" type="submit" name="action">Create
           <i class="material-icons left">send</i>
         </button>

@@ -3,8 +3,8 @@ $(function() {
   $('.button-collapse').sideNav()
   $('.parallax').parallax()
   $('select').material_select()
-
-  const $newUserForm = $('#newUserForm')
+  $('.scrollspy').scrollSpy()
+  // const $newUserForm = $('#newUserForm')
   // $newUserForm.on('submit', function(e) {
   //   e.preventDefault()
   //   $formData = $(this).serializeArray()

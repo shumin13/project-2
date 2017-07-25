@@ -2,21 +2,44 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ratingSchema = new Schema({
-  name: {
-    type: String,
-    required: true
+  ambience: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
   },
-  email: {
-    type: String,
-    required: true
+  food: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
   },
-  password: {
-    type: String,
-    required: true
+  location: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
   },
-  admin: {
-    type: Boolean,
-    default: false
+  service: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
+  },
+  valueForMoney: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
+  },
+  overall: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
+  },
+  dateOfVisit: {
+    type: Date
   },
   eatery: [{
     type: Schema.Types.ObjectId,

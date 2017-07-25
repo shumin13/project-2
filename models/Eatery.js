@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const uniqueValidator = require('mongoose-unique-validator')
 
 const eaterySchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   address: {
     type: String,
@@ -14,27 +16,31 @@ const eaterySchema = new Schema({
     type: String,
     required: true
   },
-  openingHours: [String],
   status: {
     type: String,
     enum: ['Halal Certified', 'Muslim Owned'],
     required: true
   },
-  type: {
+  // openingHours: [String],
+  // type: {
+  //   type: String,
+  //   required: true
+  // },
+  cuisine: {
     type: String,
     required: true
   },
-  cuisine: [String],
-  specialities: [String],
-  facilities: [String],
-  tel: {
-    type: Number
-  },
-  website: [String],
-  reservation: {
-    type: String
-  },
-  promotion: [String],
+  // specialities: [String],
+  // facilities: [String],
+  // tel: {
+  //   type: Number
+  // },
+  website: String,
+  // reservation: {
+  //   type: String
+  // },
+  // promotion: [String],
+  image: String,
   dateCreated: {
     type: Date,
     default: Date.now
@@ -43,6 +49,10 @@ const eaterySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Rating'
   }]
+})
+
+eaterySchema.plugin(uniqueValidator, {
+  message: 'Eatery already exists'
 })
 
 const Eatery = mongoose.model('Eatery', eaterySchema)

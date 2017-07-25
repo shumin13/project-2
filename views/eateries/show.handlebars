@@ -1,0 +1,133 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="parallax"><img src="{{ eatery.image }}">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <nav>
+      <div class="nav-wrapper white">
+        <ul id="nav-mobile">
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <h2><b>{{ eatery.name }}</b></h2>
+
+    <div class="row">
+      <div class="col s6 m2">
+        <h6>{{ eatery.area }}</h6>
+      </div>
+
+      <div class="col s6 m2">
+        {{ eatery.rating }}
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="about">
+      <h5><b>About</b></h5>
+      <div class="row">
+
+        <div class="col s3 m2">
+          <h6>Status</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ eatery.status }}</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Address</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ eatery.address }}</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Cuisine</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ eatery.cuisine }}</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Website</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ eatery.website }}</h6>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="reviews">
+      <h5><b>Reviews</b></h5>
+      <div class="row">
+
+        <div class="col s3 m2">
+          <h6>Ambience</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.ambience }}10</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Food</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.food }}10</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Location</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.location }}10</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Service</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.service }}10</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Value For Money</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.valueForMoney }}10</h6>
+        </div>
+
+        <div class="col s3 m2">
+          <h6>Overall</h6>
+        </div>
+        <div class="col s9 m10">
+          <h6>{{ rating.overall }}10</h6>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="location">
+      <h5><b>Location</b></h5>
+      <div class="container">
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
