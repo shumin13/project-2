@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const uniqueValidator = require('mongoose-unique-validator')
+const geocoder = require('geocoder')
 
 const eaterySchema = new Schema({
   name: {
@@ -12,6 +13,8 @@ const eaterySchema = new Schema({
     type: String,
     required: true
   },
+  lat: String,
+  lng: String,
   area: {
     type: String,
     required: true
@@ -49,6 +52,16 @@ const eaterySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Rating'
   }]
+})
+
+eaterySchema.pre('save', function (next) {
+  var eatery = this
+  geocoder.geocode(eatery.address, function (err, data) {
+    if (err) return next(err, null)
+    eatery.lat = data.results[0].geometry.location.lat
+    eatery.lng = data.results[0].geometry.location.lng
+    next(null, eatery)
+  })
 })
 
 eaterySchema.plugin(uniqueValidator, {

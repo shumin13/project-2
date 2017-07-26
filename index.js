@@ -62,9 +62,9 @@ app.get('/', function (req, res) {
 app.use('/users', usersRoute)
 app.use('/eateries', eateriesRoute)
 
-// app.locals = {
-//   GOOGLE_PLACE_KEY: process.env.GOOGLE_PLACE_KEY,
-// }
+app.locals = {
+  GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY
+}
 
 const port = process.env.PORT || 5000
 app.listen(port, function () {
