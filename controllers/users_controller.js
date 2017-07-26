@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const passport = require('../config/ppConfig')
+const Eatery = require('../models/Eatery')
 
 function create(req, res, next) {
   var newUser = new User({
@@ -12,8 +13,7 @@ function create(req, res, next) {
     if (err) {
       req.flash('error', err.errors.email.message)
       return res.redirect('/users/register')
-    }
-    else {
+    } else {
       passport.authenticate('local', {
         successRedirect: '/'
       })(req, res)
@@ -21,6 +21,24 @@ function create(req, res, next) {
   })
 }
 
+function show(req, res, next) {
+  var bookmark = req.body.eatery
+  var coordinatesArr = []
+  bookmark.forEach(function(eatery) {
+    Eatery.findById(eatery, function(err, doc) {
+      if (err) res.send(err)
+      coordinatesArr.push(doc)
+      console.log(coordinatesArr)
+    })
+    // console.log(coordinatesArr)
+  })
+  // console.log(coordinatesArr);
+  // res.send(coordinatesArr)
+  // coordinates: coordinatesArr
+  // })
+}
+
 module.exports = {
-  create
+  create,
+  show
 }

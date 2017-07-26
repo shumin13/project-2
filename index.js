@@ -28,7 +28,12 @@ mongoose.connect(url, {
 
 app.use(express.static('public'))
 app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
+  defaultLayout: 'main',
+  helpers: {
+    toJSON: function (object) {
+      return JSON.stringify(object)
+    }
+  }
 }))
 app.set('view engine', 'handlebars')
 app.use(bodyParser.json())
@@ -44,8 +49,8 @@ app.use(session({
 }))
 app.use(flash())
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(function(req, res, next) {
   // before every route, attach the current user to res.locals

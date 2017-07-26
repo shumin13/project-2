@@ -13,8 +13,7 @@ const eaterySchema = new Schema({
     type: String,
     required: true
   },
-  lat: String,
-  lng: String,
+  coordinates: [Number],
   area: {
     type: String,
     required: true
@@ -58,8 +57,7 @@ eaterySchema.pre('save', function (next) {
   var eatery = this
   geocoder.geocode(eatery.address, function (err, data) {
     if (err) return next(err, null)
-    eatery.lat = data.results[0].geometry.location.lat
-    eatery.lng = data.results[0].geometry.location.lng
+    eatery.coordinates = [data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]
     next(null, eatery)
   })
 })

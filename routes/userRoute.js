@@ -9,11 +9,21 @@ router.get('/register', function (req, res) {
   })
 })
 
+router.post('/register', usersController.create)
+
 router.get('/login', function (req, res) {
   res.render('users/login', {
     message: req.flash('error')
   })
 })
+
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/users/profile',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })
+)
 
 router.get('/profile', function (req, res) {
   res.render('users/profile', {
@@ -26,14 +36,6 @@ router.get('/logout', function (req, res) {
   res.redirect('/')
 })
 
-router.post('/register', usersController.create)
-
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/users/profile',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })
-)
+router.post('/profile', usersController.show)
 
 module.exports = router

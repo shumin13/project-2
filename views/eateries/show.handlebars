@@ -140,21 +140,6 @@
   </div>
 </div>
 
-<script>
-  function initMap() {
-    var eatery = {
-      lat: {{eatery.lat}},
-      lng: {{eatery.lng}}
-    }
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 18,
-      center: eatery
-    })
-    var marker = new google.maps.Marker({
-      position: eatery,
-      map: map
-    })
-  }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_KEY}}&callback=initMap">
+<script>var eatery = {{{toJSON eatery}}}</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_KEY}}&language=en&region=SG&callback=initMap">
 </script>
