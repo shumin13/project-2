@@ -1,3 +1,20 @@
-{{#if currentUser}}
-<h4>Hello, {{ currentUser.name }}.</h4>
-{{/if}}
+<div class="container center-align">
+  <div class="section">
+
+    {{#if currentUser}}
+      <h3>Hello, {{ currentUser.name }}.</h3>
+    {{/if}}
+
+    <div id="userMap">
+      <h5><b>Map</b></h5>
+      <div id="userMap" class="container">
+      </div>
+      <br>
+    </div>
+
+
+  </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_KEY}}&callback=initUserMap">
+</script>
