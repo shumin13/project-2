@@ -3,12 +3,30 @@ $(function() {
   $('.parallax').parallax()
   $('select').material_select()
   $('.scrollspy').scrollSpy()
+  $('.collapsible').collapsible()
 
+
+// TO FIX
   var $likeButton = $('#likeButton')
   $likeButton.on('click', function(e) {
-    alert('like')
+
+    $.ajax({
+      url: "/users/profile",
+      type: 'PUT',
+      data: {
+        user: currentUser,
+        eateryId: $(this).data('id')
+      },
+    }).done(function(data) {
+      console.log(data)
+    })
   })
 })
+    // alert('like')
+    // console.log(currentUser)
+    // console.log(req.params.id);
+  // })
+// })
 
 function initMap() {
   var latLng = new google.maps.LatLng(eatery.coordinates[0], eatery.coordinates[1])
@@ -22,6 +40,7 @@ function initMap() {
   })
 }
 
+// TO FIX
 function initUserMap() {
   var userMap = new google.maps.Map(document.getElementById('userMap'), {
     zoom: 11,
@@ -86,7 +105,6 @@ function initUserMap() {
     }
   }
 }
-
 // $.ajax({
 //   url: '/users/profile',
 //   type: 'POST',

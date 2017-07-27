@@ -1,20 +1,24 @@
-<div class="container center-align">
+<div class="container">
   <div class="section">
 
     {{#if currentUser}}
       <h3>Hello, {{ currentUser.name }}.</h3>
     {{/if}}
 
-    <div id="userMap">
-      <h5><b>Map</b></h5>
-      <div id="userMap" class="container">
+    <nav>
+      <div class="nav-wrapper white">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Reviews</a></li>
+        </ul>
       </div>
-      <br>
+    </nav>
+
+    <div id="userMap" class="container">
     </div>
 
   </div>
 </div>
 
-<script>var currentUser = {{{toJSON currentUser}}}</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_KEY}}&language=en&region=SG&callback=initUserMap">
 </script>

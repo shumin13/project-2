@@ -3,6 +3,12 @@ const router = express.Router()
 const usersController = require('../controllers/users_controller')
 const passport = require('../config/ppConfig')
 
+function authenticatedUser(req, res, next) {
+  if (req.isAuthenticated()) return next()
+  req.flash('errorMessage', 'Login to access!')
+  res.redirect('/users/login')
+}
+
 router.get('/register', function (req, res) {
   res.render('users/register', {
     message: req.flash('error')
@@ -25,17 +31,19 @@ router.post('/login',
   })
 )
 
-router.get('/profile', function (req, res) {
+router.get('/profile', authenticatedUser, function (req, res) {
   res.render('users/profile', {
     user: req.user
   })
 })
 
-router.get('/logout', function (req, res) {
+router.get('/logout', authenticatedUser, function (req, res) {
   req.logout()
   res.redirect('/')
 })
 
 router.post('/profile', usersController.show)
+
+router.put('/profile', usersController.update)
 
 module.exports = router

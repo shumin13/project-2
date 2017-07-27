@@ -21,6 +21,7 @@ function create(req, res, next) {
   })
 }
 
+// TO FIX
 function show(req, res, next) {
   var bookmark = req.body.eatery
   var coordinatesArr = []
@@ -38,7 +39,24 @@ function show(req, res, next) {
   // })
 }
 
+// TO FIX
+function update(req, res) {
+  User.findOne({
+    _id: req.body.user._id
+  }, function(err, user) {
+    if (err) res.send(err)
+    if (user.eatery.hasOwnProperty(req.body.eateryId)){
+      res.send('Eatery already saved in user account.')
+    } else {
+      user.eatery.push(req.body.eateryId)
+      user.save()
+      res.send('Done')
+    }
+  })
+}
+
 module.exports = {
   create,
-  show
+  show,
+  update
 }

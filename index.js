@@ -53,19 +53,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(function(req, res, next) {
-  // before every route, attach the current user to res.locals
   res.locals.currentUser = req.user
   next()
 })
 
-// public paths
-app.get('/', function (req, res) {
-  res.render('home')
-})
-
-// non public paths
+app.use('/', eateriesRoute)
 app.use('/users', usersRoute)
-app.use('/eateries', eateriesRoute)
 
 app.locals = {
   GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY

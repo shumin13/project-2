@@ -1,6 +1,19 @@
 const Eatery = require('../models/Eatery')
+const User = require('../models/User')
 
-function create (req, res, next) {
+function list(req, res){
+  Eatery.find({}, function(err, eateries) {
+    if (err) {
+      res.send(err)
+      return
+    }
+    res.render('home', {
+      eateries: eateries
+    })
+  })
+}
+
+function create(req, res, next) {
 
   var newEatery = new Eatery({
     name: req.body.name,
@@ -12,7 +25,7 @@ function create (req, res, next) {
     image: req.body.image
   })
 
-  newEatery.save(function (err, createdEatery) {
+  newEatery.save(function(err, createdEatery) {
     if (err) {
       return res.redirect('/eateries/register')
     }
@@ -20,10 +33,10 @@ function create (req, res, next) {
   })
 }
 
-function show (req, res) {
-  Eatery.findById(req.params.id, function (err, eatery) {
+function show(req, res) {
+  Eatery.findById(req.params.id, function(err, eatery) {
     if (err) {
-      console.log(err)
+      res.send(err)
       return
     }
     res.render('eateries/show', {
@@ -33,6 +46,7 @@ function show (req, res) {
 }
 
 module.exports = {
+  list,
   create,
   show
 }
