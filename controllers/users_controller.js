@@ -39,18 +39,17 @@ function show(req, res, next) {
   // })
 }
 
-// TO FIX
 function update(req, res) {
   User.findOne({
-    _id: req.body.user._id
+    _id: req.params.id
   }, function(err, user) {
     if (err) res.send(err)
-    if (user.eatery.hasOwnProperty(req.body.eateryId)) {
-      res.send('Eatery already saved in user account.')
+    if (user.eatery.indexOf(req.body.id) !== -1) {
+      res.send('Failure')
     } else {
-      user.eatery.push(req.body.eateryId)
+      user.eatery.push(req.body.id)
       user.save()
-      res.send('Done')
+      res.send('Success')
     }
   })
 }

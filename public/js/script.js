@@ -13,21 +13,25 @@ $(function() {
     closeOnSelect: true // Close upon selecting a date,
   })
 
-  // TO FIX
-  var $likeButton = $('#likeButton')
-  $likeButton.on('click', function(e) {
-    alert('Like!')
+  var $bookmarkButton = $('#bookmarkButton')
+  $bookmarkButton.on('click', function(e) {
+    e.preventDefault()
+    var eatery = {
+      id: $(this).data('id')
+    }
+    $.ajax({
+      method: 'PUT',
+      url: `/users/${currentUser._id}`,
+      data: eatery
+    }).done(function(data) {
+      if (data === 'Failure') {
+        Materialize.toast('It is in your bookmarks.', 2000, 'rounded')
+      }
+      if (data === 'Success') {
+        Materialize.toast('Bookmark added.', 2000, 'rounded')
+      }
+    })
   })
-  //     $.ajax({
-  //       url: "/users/profile",
-  //       type: 'POST',
-  //       data: {
-  //         eateryId: $(this).data('id')
-  //       },
-  //     }).done(function(data) {
-  //       console.log(data)
-  //     })
-  //   })
 })
 
 function initMap() {

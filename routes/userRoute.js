@@ -44,6 +44,6 @@ router.get('/logout', authenticatedUser, function (req, res) {
 
 router.post('/profile', usersController.show)
 
-router.put('/profile', usersController.update)
+router.put('/:id', usersController.update)
 
 module.exports = router
