@@ -13,7 +13,7 @@ function list(req, res){
   })
 }
 
-function create(req, res, next) {
+function create(req, res) {
 
   var newEatery = new Eatery({
     name: req.body.name,

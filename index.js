@@ -13,6 +13,7 @@ const url = process.env.MLAB_URI
 const app = express()
 const usersRoute = require('./routes/userRoute')
 const eateriesRoute = require('./routes/eateryRoute')
+const ratingsRoute = require('./routes/ratingRoute')
 
 mongoose.Promise = global.Promise
 mongoose.connect(url, {
@@ -59,6 +60,7 @@ app.use(function(req, res, next) {
 
 app.use('/', eateriesRoute)
 app.use('/users', usersRoute)
+app.use('/ratings', ratingsRoute)
 
 app.locals = {
   GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY

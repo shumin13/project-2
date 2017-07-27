@@ -34,9 +34,11 @@ const ratingSchema = new Schema({
   },
   overall: {
     type: Number,
-    required: true,
     min: 0,
     max: 5
+  },
+  comment: {
+    type: String
   },
   dateOfVisit: {
     type: Date

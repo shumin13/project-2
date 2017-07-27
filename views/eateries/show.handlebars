@@ -14,7 +14,7 @@
         </a>
       <ul>
         <li><button class="btn-floating red accent-3" id="likeButton" data-id="{{ eatery._id }}"><i class="material-icons">favorite_border</i></button></li>
-        <li><a class="btn-floating indigo" href="/rating/{{ eatery._id }}"><i class="material-icons">edit</i></a></li>
+        <li><a class="btn-floating indigo" href="/ratings/{{ eatery._id }}"><i class="material-icons">edit</i></a></li>
       </ul>
     </div>
 
@@ -36,7 +36,7 @@
       </div>
 
       <div class="col s6 m2">
-        {{ eatery.rating }}
+        {{!-- eatery.rating --}}
       </div>
     </div>
 
