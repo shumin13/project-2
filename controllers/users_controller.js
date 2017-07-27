@@ -45,7 +45,7 @@ function update(req, res) {
     _id: req.body.user._id
   }, function(err, user) {
     if (err) res.send(err)
-    if (user.eatery.hasOwnProperty(req.body.eateryId)){
+    if (user.eatery.hasOwnProperty(req.body.eateryId)) {
       res.send('Eatery already saved in user account.')
     } else {
       user.eatery.push(req.body.eateryId)

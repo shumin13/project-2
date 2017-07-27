@@ -13,27 +13,22 @@ $(function() {
     closeOnSelect: true // Close upon selecting a date,
   })
 
-// TO FIX
+  // TO FIX
   var $likeButton = $('#likeButton')
   $likeButton.on('click', function(e) {
-
-    $.ajax({
-      url: "/users/profile",
-      type: 'PUT',
-      data: {
-        user: currentUser,
-        eateryId: $(this).data('id')
-      },
-    }).done(function(data) {
-      console.log(data)
-    })
+    alert('Like!')
   })
+  //     $.ajax({
+  //       url: "/users/profile",
+  //       type: 'POST',
+  //       data: {
+  //         eateryId: $(this).data('id')
+  //       },
+  //     }).done(function(data) {
+  //       console.log(data)
+  //     })
+  //   })
 })
-    // alert('like')
-    // console.log(currentUser)
-    // console.log(req.params.id);
-  // })
-// })
 
 function initMap() {
   var latLng = new google.maps.LatLng(eatery.coordinates[0], eatery.coordinates[1])
@@ -58,6 +53,16 @@ function initUserMap() {
     mapTypeId: 'hybrid'
   })
 
+  //   $.ajax({
+  //     url: '/users/profile',
+  //     type: 'POST',
+  //     data: currentUser
+  //   }).done(function(data) {
+  //     console.log(data)
+  //   })
+  // }
+
+  // TO FIX
   var results = [{
       _id: "5977450f0cac3e18fdff62c8",
       lng: 103.86005,
@@ -112,11 +117,3 @@ function initUserMap() {
     }
   }
 }
-// $.ajax({
-//   url: '/users/profile',
-//   type: 'POST',
-//   data: currentUser
-// }).done(function(data) {
-//   console.log(data)
-// })
-// }

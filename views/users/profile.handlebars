@@ -5,16 +5,20 @@
       <h3>Hello, {{ currentUser.name }}.</h3>
     {{/if}}
 
-    <nav>
-      <div class="nav-wrapper white">
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Reviews</a></li>
+    <div class="row">
+      <div class="col s12 ">
+        <ul class="tabs white">
+          <li class="tab col s3"><a class="active" href="#userMap">Dashboard</a></li>
+          <li class="tab col s3"><a href="#reviews">Reviews</a></li>
         </ul>
       </div>
-    </nav>
 
-    <div id="userMap" class="container">
+      <div id="userMap" class="col s12">
+      </div>
+      <div id="reviews" class="col s12">
+        <span class="new badge red" data-badge-caption="Work in Progress"></span>
+      </div>
+
     </div>
 
   </div>
