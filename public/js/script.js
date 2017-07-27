@@ -46,8 +46,8 @@ function initMap() {
   })
 }
 
-// TO FIX
 function initUserMap() {
+  const $spinner = $('#spinner')
   var userMap = new google.maps.Map(document.getElementById('userMap'), {
     zoom: 11,
     center: {
@@ -56,32 +56,6 @@ function initUserMap() {
     },
     mapTypeId: 'hybrid'
   })
-
-  //   $.ajax({
-  //     url: '/users/profile',
-  //     type: 'POST',
-  //     data: currentUser
-  //   }).done(function(data) {
-  //     console.log(data)
-  //   })
-  // }
-
-  // TO FIX
-  var results = [{
-      _id: "5977450f0cac3e18fdff62c8",
-      lng: 103.86005,
-      lat: 1.303859,
-      name: 'The Ramen Stall',
-      coordinates: [1.303859, 103.86005]
-    },
-    {
-      _id: "597745bd0cac3e18fdff62c9",
-      lng: 103.8599,
-      lat: 1.3042,
-      name: 'Kumoya',
-      coordinates: [1.3042, 103.8599]
-    }
-  ]
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -93,31 +67,33 @@ function initUserMap() {
     })
   }
 
-  for (var i = 0; i < results.length; i++) {
-    var coords = results[i].coordinates
-    var latLng = new google.maps.LatLng(coords[0], coords[1])
-    var marker = new google.maps.Marker({
-      position: latLng,
-      animation: google.maps.Animation.DROP,
-      map: userMap
-    })
-    attachName(marker, results[i].name)
-  }
-
-  function attachName(marker, name) {
-    var infowindow = new google.maps.InfoWindow({
-      content: name
-    })
-    marker.addListener('click', function() {
-      infowindow.open(marker.get('map'), marker)
-    })
-  }
-
-  function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-      marker.setAnimation(null)
-    } else {
-      marker.setAnimation(google.maps.Animation.BOUNCE)
+  $.post('/users/profile').done(function(eateryArr) {
+    for (var i = 0; i < eateryArr.length; i++) {
+      var coords = eateryArr[i].coordinates
+      var latLng = new google.maps.LatLng(coords[0], coords[1])
+      var marker = new google.maps.Marker({
+        position: latLng,
+        animation: google.maps.Animation.DROP,
+        map: userMap
+      })
+      attachName(marker, eateryArr[i].name, eateryArr[i]._id)
     }
-  }
+
+    function attachName(marker, name, id) {
+      var infowindow = new google.maps.InfoWindow({
+        content: `<a href="/eateries/${id}">${name}</a>`
+      })
+      marker.addListener('click', function() {
+        infowindow.open(marker.get('map'), marker)
+      })
+    }
+
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null)
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE)
+      }
+    }
+  })
 }

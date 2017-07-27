@@ -32,9 +32,7 @@ router.post('/login',
 )
 
 router.get('/profile', authenticatedUser, function (req, res) {
-  res.render('users/profile', {
-    user: req.user
-  })
+  res.render('users/profile')
 })
 
 router.get('/logout', authenticatedUser, function (req, res) {

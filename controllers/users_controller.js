@@ -21,22 +21,16 @@ function create(req, res, next) {
   })
 }
 
-// TO FIX
 function show(req, res, next) {
-  var bookmark = req.body.eatery
-  var coordinatesArr = []
-  bookmark.forEach(function(eatery) {
-    Eatery.findById(eatery, function(err, doc) {
+  var eateriesId = req.user.eatery
+  var eateryArr = []
+  eateriesId.forEach(function(eateryId) {
+    Eatery.findById(eateryId, function(err, eatery) {
       if (err) res.send(err)
-      coordinatesArr.push(doc)
-      console.log(coordinatesArr)
+      eateryArr.push(eatery)
+      if (eateryArr.length === eateriesId.length) res.send(eateryArr)
     })
-    // console.log(coordinatesArr)
   })
-  // console.log(coordinatesArr);
-  // res.send(coordinatesArr)
-  // coordinates: coordinatesArr
-  // })
 }
 
 function update(req, res) {
