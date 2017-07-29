@@ -17,11 +17,12 @@
 <div class="container">
   <div class="section">
     <h5>Recommended</h5>
+
     <div class="row">
       {{#each eateries as |eatery|}}
         <div class="col s12 m4">
           <a href="/eateries/{{eatery._id}}">
-            <div class="card">
+            <div class="card small">
               <div class="card-image">
                 <img src="{{eatery.image}}">
               </div>

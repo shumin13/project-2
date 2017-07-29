@@ -31,9 +31,7 @@ router.post('/login',
   })
 )
 
-router.get('/profile', authenticatedUser, function (req, res) {
-  res.render('users/profile')
-})
+router.get('/profile', authenticatedUser, usersController.list)
 
 router.get('/logout', authenticatedUser, function (req, res) {
   req.logout()

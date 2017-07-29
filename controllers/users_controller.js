@@ -48,8 +48,25 @@ function update(req, res) {
   })
 }
 
+function list(req,res) {
+  var eateriesId = req.user.eatery
+  var eateryArr = []
+  eateriesId.forEach(function(eateryId) {
+    Eatery.findById(eateryId, function(err, eatery) {
+      if (err) res.send(err)
+      eateryArr.push(eatery)
+      if (eateryArr.length === eateriesId.length)
+      // console.log(eateryArr);
+      res.render('users/profile', {
+        eateries: eateryArr
+      })
+  })
+})
+}
+
 module.exports = {
   create,
   show,
-  update
+  update,
+  list
 }
