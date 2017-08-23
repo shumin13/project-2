@@ -3,7 +3,7 @@ const router = express.Router()
 const usersController = require('../controllers/users_controller')
 const passport = require('../config/ppConfig')
 
-function authenticatedUser(req, res, next) {
+function authenticatedUser (req, res, next) {
   if (req.isAuthenticated()) return next()
   req.flash('errorMessage', 'Login to access!')
   res.redirect('/users/login')

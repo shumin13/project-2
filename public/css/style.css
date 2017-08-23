@@ -64,3 +64,7 @@ footer.page-footer {
   height: 400px;
   background-color: grey;
 }
+
+.eatery-name {
+  font-size: 18px;
+}
