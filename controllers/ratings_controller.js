@@ -24,7 +24,7 @@ function create(req, res) {
     dateOfVisit: req.body.dateOfVisit,
     comment: req.body.comment,
     eatery: req.params.id,
-    user: req.user
+    user: req.user.id
   })
 
   newRating.save(function(err, createdRating) {
@@ -37,13 +37,6 @@ function create(req, res) {
       if (err) res.send(err)
       eatery.rating.push(createdRating.id)
       eatery.save()
-    })
-    User.findOne({
-      _id: req.user
-    }, function(err, user) {
-      if (err) res.send(err)
-      user.rating.push(createdRating.id)
-      user.save()
     })
     res.redirect(`/eateries/${req.params.id}`)
   })

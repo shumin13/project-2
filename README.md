@@ -44,7 +44,6 @@ Users to be able to
 
 ## To Be Implemented
 
-* Ratings/Reviews
 * Search Bar
 * Eateries - Update/Delete
 * Facebook Login

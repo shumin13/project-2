@@ -1,7 +1,9 @@
 const Eatery = require('../models/Eatery')
 const User = require('../models/User')
+const Rating = require('../models/Rating')
+const mongoose = require('mongoose')
 
-function list(req, res){
+function list (req, res) {
   Eatery.find({}, function(err, eateries) {
     if (err) {
       res.send(err)
@@ -34,13 +36,25 @@ function create(req, res) {
 }
 
 function show(req, res) {
-  Eatery.findById(req.params.id, function(err, eatery) {
-    if (err) {
-      res.send(err)
-      return
-    }
-    res.render('eateries/show', {
-      eatery: eatery
+  Eatery.findById(req.params.id)
+  .populate('rating')
+  .then(eatery => {
+    Rating.aggregate([
+      { $match: { eatery: mongoose.Types.ObjectId(`${req.params.id}`) }},
+      { $group: {
+          _id: '$eatery',
+          ambience: { $avg: '$ambience' },
+          food: { $avg: '$food' },
+          location: { $avg: '$location' },
+          service: { $avg: '$service' },
+          valueForMoney: { $avg: '$valueForMoney' },
+        }
+      }
+    ]).then(rating => {
+      res.render('eateries/show', {
+        eatery,
+        rating: rating[0]
+      })
     })
   })
 }

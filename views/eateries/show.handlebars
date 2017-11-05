@@ -14,7 +14,7 @@
         </a>
       <ul>
         <li><button class="btn-floating red accent-3 tooltipped" id="bookmarkButton" data-id="{{ eatery._id }}" data-position="left" data-delay="30" data-tooltip="Bookmark"><i class="material-icons">favorite_border</i></button></li>
-        <li><a class="btn-floating indigo tooltipped" href="/ratings/{{ eatery._id }}" data-position="left" data-delay="30" data-tooltip="Write a review""><i class="material-icons">edit</i></a></li>
+        <li><a class="btn-floating indigo tooltipped" href="/ratings/{{ eatery._id }}" data-position="left" data-delay="30" data-tooltip="Write a review"><i class="material-icons">edit</i></a></li>
       </ul>
     </div>
 
@@ -22,7 +22,9 @@
       <div class="nav-wrapper white">
         <ul id="nav-mobile">
           <li><a href="#about">About</a></li>
+          {{#if rating}}
           <li><a href="#reviews">Reviews</a></li>
+          {{/if}}
           <li><a href="#location">Location</a></li>
         </ul>
       </div>
@@ -79,8 +81,9 @@
 
     <div class="divider"></div>
 
+    {{#if rating}}
     <div id="reviews">
-      <h5><b>Reviews</b><span class="new badge red" data-badge-caption="Work in Progress"></span></h5>
+      <h5><b>Reviews</b></h5>
 
 
       <div class="row">
@@ -89,48 +92,42 @@
           <h6>Ambience</h6>
         </div>
         <div class="col s8 m10">
-          <h6>{{ rating.ambience }}5</h6>
+          <h6>{{ rating.ambience }}</h6>
         </div>
 
         <div class="col s4 m2">
           <h6>Food</h6>
         </div>
         <div class="col s8 m10">
-          <h6>{{ rating.food }}4</h6>
+          <h6>{{ rating.food }}</h6>
         </div>
 
         <div class="col s4 m2">
           <h6>Location</h6>
         </div>
         <div class="col s8 m10">
-          <h6>{{ rating.location }}3</h6>
+          <h6>{{ rating.location }}</h6>
         </div>
 
         <div class="col s4 m2">
           <h6>Service</h6>
         </div>
         <div class="col s8 m10">
-          <h6>{{ rating.service }}4</h6>
+          <h6>{{ rating.service }}</h6>
         </div>
 
         <div class="col s4 m2">
           <h6>Value For Money</h6>
         </div>
         <div class="col s8 m10">
-          <h6>{{ rating.valueForMoney }}3</h6>
-        </div>
-
-        <div class="col s4 m2">
-          <h6>Overall</h6>
-        </div>
-        <div class="col s8 m10">
-          <h6>{{ rating.overall }}4</h6>
+          <h6>{{ rating.valueForMoney }}</h6>
         </div>
 
       </div>
     </div>
 
     <div class="divider"></div>
+    {{/if}}
 
     <div id="location">
       <h5><b>Location</b></h5>

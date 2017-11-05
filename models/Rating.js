@@ -43,14 +43,14 @@ const ratingSchema = new Schema({
   dateOfVisit: {
     type: Date
   },
-  eatery: [{
+  eatery: {
     type: Schema.Types.ObjectId,
     ref: 'Eatery'
-  }],
-  user: [{
+  },
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Rating'
-  }]
+    ref: 'User'
+  }
 })
 
 const Rating = mongoose.model('Rating', ratingSchema)
