@@ -1,61 +1,57 @@
 const Eatery = require('../models/Eatery')
-const User = require('../models/User')
 const Rating = require('../models/Rating')
 const mongoose = require('mongoose')
 
-function list (req, res) {
-  Eatery.find({}, function(err, eateries) {
-    if (err) {
-      res.send(err)
-      return
-    }
+async function list (req, res) {
+  try {
+    const eateries = await Eatery.find({})
     res.render('home', {
-      eateries: eateries
+      eateries
     })
-  })
+  } catch (err) {
+    console.log(err)
+  }
 }
 
-function create(req, res) {
-
-  var newEatery = new Eatery({
-    name: req.body.name,
-    address: req.body.address,
-    area: req.body.area,
-    status: req.body.status,
-    cuisine: req.body.cuisine,
-    website: req.body.website,
-    image: req.body.image
-  })
-
-  newEatery.save(function(err, createdEatery) {
-    if (err) {
-      return res.redirect('/eateries/register')
-    }
+async function create (req, res) {
+  try {
+    let newEatery = new Eatery({
+      name: req.body.name,
+      address: req.body.address,
+      area: req.body.area,
+      status: req.body.status,
+      cuisine: req.body.cuisine,
+      website: req.body.website,
+      image: req.body.image
+    })
+    await newEatery.save()
     res.redirect('/eateries/register')
-  })
+  } catch (err) {
+    console.log(err)
+  }
 }
 
-function show(req, res) {
-  Eatery.findById(req.params.id)
-  .populate('rating')
-  .then(eatery => {
-    Rating.aggregate([
-      { $match: { eatery: mongoose.Types.ObjectId(`${req.params.id}`) }},
-      { $group: {
-          _id: '$eatery',
-          ambience: { $avg: '$ambience' },
-          food: { $avg: '$food' },
-          location: { $avg: '$location' },
-          service: { $avg: '$service' },
-          valueForMoney: { $avg: '$valueForMoney' },
-        }
+async function show (req, res) {
+  const eatery = await Eatery.findById(req.params.id).populate('rating')
+  const rating = await Rating.aggregate([
+    {
+      $match: {
+        eatery: mongoose.Types.ObjectId(`${req.params.id}`) }
+    },
+    {
+      $group: {
+        _id: '$eatery',
+        ambience: { $avg: '$ambience' },
+        food: { $avg: '$food' },
+        location: { $avg: '$location' },
+        service: { $avg: '$service' },
+        valueForMoney: { $avg: '$valueForMoney' }
       }
-    ]).then(rating => {
-      res.render('eateries/show', {
-        eatery,
-        rating: rating[0]
-      })
-    })
+    }
+  ])
+  res.render('eateries/show', {
+    eatery,
+    rating: rating[0]
   })
 }
 
